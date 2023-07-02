@@ -3,7 +3,7 @@
 import { getAllJobs } from "@/app/services/Jobs";
 import { useEffect, useState } from "react";
 import { Job } from "./types";
-import JobCard from "@/app/services/Jobs/JobCard";
+import JobCard from "@/components/JobFeed/JobCard";
 
 const JobFeed = () => {
     const [jobList, setJobList] = useState<Job[]>([]);
@@ -23,13 +23,9 @@ const JobFeed = () => {
                 <h1 className="text-6xl font-semibold text-sky-400">Job Opportunities</h1>
             </div>
 
-            <div className="flex flex-wrap shrink-0 items-center justify-around p-10">
-                {jobList.map((job) => {
-                    return (
-                        <div className="p-4">
-                            <JobCard job={job} />
-                        </div>
-                    );
+            <div className="flex p-20 justify-center w-full  mx-10 my-10 flex-wrap  ">
+                {jobList.map((job, index) => {
+                    return <JobCard job={job} key={index} />;
                 })}
             </div>
         </div>
