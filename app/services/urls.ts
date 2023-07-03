@@ -8,11 +8,15 @@ export const requests = {
     },
     companies: {
         getOne: "http://localhost:5000/companies",
+        getAll: "http://localhost:5000/companies",
     },
     applications: {
         createApplicant: "http://localhost:5000/applicant",
     },
     jobApplications: {
         createJobAppllication: "http://localhost:5000/jobApplication",
+    },
+    skills: {
+        getAll: "http://localhost:5000/skill",
     },
 };
