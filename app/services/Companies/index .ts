@@ -14,3 +14,16 @@ export const getACompany = async (companyId: number) => {
         }
     }
 };
+
+export const getAllCompany = async () => {
+    try {
+        const data = await axiosInstance.get(`${requests.companies.getAll}`);
+        return data;
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            return error.response?.data;
+        } else {
+            return "Unexpected error";
+        }
+    }
+};
