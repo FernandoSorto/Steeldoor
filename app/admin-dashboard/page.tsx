@@ -37,6 +37,10 @@ const AdminDashboard = () => {
         router.push(`admin-dashboard/edit-job/${jobId}`);
     };
 
+    const goToApplicationDetails = (jobId: number) => {
+        router.push(`admin-dashboard/view-applications/${jobId}`);
+    };
+
     const deleteJobOpportunity = async (jobId: number) => {
         const response = await deleteJob(jobId);
 
@@ -71,6 +75,7 @@ const AdminDashboard = () => {
                             adminView={true}
                             editJob={() => goToEditJob(job.id)}
                             deleteJob={() => deleteJobOpportunity(job.id)}
+                            viewJob={() => goToApplicationDetails(job.id)}
                             key={job.id}
                         />
                     );
