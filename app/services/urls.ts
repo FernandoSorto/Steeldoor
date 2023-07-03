@@ -9,4 +9,10 @@ export const requests = {
     companies: {
         getOne: "http://localhost:5000/companies",
     },
+    applications: {
+        createApplicant: "http://localhost:5000/applicant",
+    },
+    jobApplications: {
+        createJobAppllication: "http://localhost:5000/jobApplication",
+    },
 };
