@@ -20,7 +20,10 @@ const JobCard = ({ job, adminView, editJob, deleteJob, viewJob, applyforJob }: J
             </p>
             {adminView ? (
                 <div className=" flex p-5 w-full">
-                    <button className="bg-green-500 mr-10 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                    <button
+                        onClick={viewJob}
+                        className="bg-green-500 mr-10 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                    >
                         View
                     </button>
                     <button
