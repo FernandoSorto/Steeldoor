@@ -6,5 +6,5 @@ export type JobCardProps = {
     editJob?: () => void;
     deleteJob?: () => void;
     viewJob?: () => void;
-    applyforJob?: () => void;
+    applyForJob?: () => void;
 };

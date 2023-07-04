@@ -5,7 +5,7 @@ import PageHeader from "@/components/PageHeader";
 export default function Home() {
     return (
         <main className="flex flex-col w-full h-screen overflow-y-hidden">
-            <div className="overflow-y-auto">
+            <div className="flex-grow overflow-y-auto">
                 <PageHeader />
                 <JobFeed />
             </div>
