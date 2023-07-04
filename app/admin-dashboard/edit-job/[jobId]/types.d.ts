@@ -1,5 +1,3 @@
-admin - dashboard / edit - job / [jobId] / types.d.ts;
-
 export type JobDetails = {
     id: number;
     title: string;
@@ -19,9 +17,10 @@ export type SkillByName = {
 };
 
 export type Applicant = {
+    id: number;
     applicant: {
-        id: number;
         firstName: String;
         lastName: string;
     };
+    cvFile: string;
 };

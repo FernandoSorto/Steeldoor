@@ -15,6 +15,7 @@ export const requests = {
     },
     jobApplications: {
         createJobAppllication: "http://localhost:5000/jobApplication",
+        downloadCVFile: "http://localhost:5000/jobApplication",
     },
     skills: {
         getAll: "http://localhost:5000/skill",

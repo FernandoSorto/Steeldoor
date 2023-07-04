@@ -3,6 +3,7 @@ import { getJob } from "@/app/services/Jobs";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { JobDetails } from "../../edit-job/[jobId]/types";
+import { downloadCV } from "@/app/services/JobApplications";
 
 const AdminJobDetails = ({ params }: { params: { jobId: number } }) => {
     const router = useRouter();
@@ -24,10 +25,13 @@ const AdminJobDetails = ({ params }: { params: { jobId: number } }) => {
             if (response.status === 200) {
                 setJobDetails(response.data);
             }
-            console.log(JSON.stringify(response.data, null, 2));
         };
         fetchJobs();
     }, []);
+
+    const downloadCVFile = async (applicationId: number) => {
+        await downloadCV(applicationId);
+    };
 
     return (
         <div className="flex flex-col items-center p-10">
@@ -64,7 +68,10 @@ const AdminJobDetails = ({ params }: { params: { jobId: number } }) => {
                     <div className="flex">
                         {jobDetails.SkillsOnJobs.map((item) => {
                             return (
-                                <div className="bg-violet-200 p-3 rounded-full mr-2">
+                                <div
+                                    key={item.skill.name}
+                                    className="bg-violet-200 p-3 rounded-full mr-2"
+                                >
                                     <p>{item.skill.name}</p>
                                 </div>
                             );
@@ -78,7 +85,7 @@ const AdminJobDetails = ({ params }: { params: { jobId: number } }) => {
                     {jobDetails.applications && jobDetails.applications.length > 0 ? (
                         jobDetails.applications.map((applicant) => {
                             return (
-                                <div>
+                                <div key={applicant.id}>
                                     <h3 className="mb-1 text-lg font-semibold">Applicant</h3>
                                     <div className="flex mb-2 flex-col bg-green-300 rounded-r-full p-3">
                                         <div className="flex">
@@ -91,6 +98,16 @@ const AdminJobDetails = ({ params }: { params: { jobId: number } }) => {
                                             <label className="mr-2 font-semibold">Last Name:</label>
                                             <p>{applicant.applicant.lastName}</p>
                                         </div>
+                                        <button
+                                            onClick={() => {
+                                                downloadCVFile(applicant.id);
+                                            }}
+                                            className="bg-gray-500 mr-10 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+                                        >
+                                            <label className="mr-2 font-semibold">
+                                                Download CV!
+                                            </label>
+                                        </button>
                                     </div>
                                 </div>
                             );
