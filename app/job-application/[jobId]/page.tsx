@@ -13,6 +13,8 @@ const JobApplication = ({ params }: { params: { jobId: number } }) => {
         lastName: "",
     });
 
+    const [cvFile, setCvFile] = useState<File | null>(null);
+
     const handleChange = (key: keyof Applicant, value: string) => {
         setApplicant((prevState) => ({
             ...prevState,
@@ -20,10 +22,15 @@ const JobApplication = ({ params }: { params: { jobId: number } }) => {
         }));
     };
 
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files && e.target.files[0];
+        setCvFile(file);
+    };
+
     const apply = async () => {
         const createApplicantResponse = await createApplicant(applicant);
 
-        if (createApplicantResponse.status === 200) {
+        if (createApplicantResponse.status === 200 && cvFile) {
             console.log(createApplicantResponse.data.id);
 
             const application = {
@@ -31,9 +38,7 @@ const JobApplication = ({ params }: { params: { jobId: number } }) => {
                 applicantId: createApplicantResponse.data.id,
             };
 
-            const createApplicationResponse = await createApplicantionToJob(application);
-
-            console.log(JSON.stringify(createApplicationResponse, null, 2));
+            const createApplicationResponse = await createApplicantionToJob(application, cvFile);
 
             if (createApplicationResponse.status === 200) {
                 console.log("Application sent!");
@@ -59,6 +64,15 @@ const JobApplication = ({ params }: { params: { jobId: number } }) => {
                 <input
                     value={applicant.lastName}
                     onChange={(e) => handleChange("lastName", e.target.value)}
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                />
+            </div>
+
+            <div className="flex m-5 p-3 shrink-0 h-20 w-1/2 justify-center items-baseline bg-white rounded-lg shadow-lg">
+                <label>Resume</label>
+                <input
+                    type="file"
+                    onChange={handleFileChange}
                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 />
             </div>

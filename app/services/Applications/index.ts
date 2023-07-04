@@ -16,17 +16,25 @@ export const createApplicant = async (applicant: Applicant) => {
     }
 };
 
-export const createApplicantionToJob = async (applicationIds: JobApplication) => {
-    console.log("REQUESTING TO CREATE APPLICATION");
-    console.log(JSON.stringify(applicationIds, null, 2));
+export const createApplicantionToJob = async (applicationIds: JobApplication, file: File) => {
     try {
+        const formData = new FormData();
+        formData.append("cv", file);
+        formData.append("jobId", applicationIds.jobId.toString());
+        formData.append("applicantId", applicationIds.applicantId.toString());
         const data = await axiosInstance.post(
             requests.jobApplications.createJobAppllication,
-            applicationIds
+            formData,
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            }
         );
         return data;
     } catch (error) {
         if (axios.isAxiosError(error)) {
+            console.log(JSON.stringify(error, null, 2));
             return error.response?.data;
         } else {
             return "Unexpected error";
