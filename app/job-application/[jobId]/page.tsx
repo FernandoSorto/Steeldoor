@@ -46,18 +46,21 @@ const JobApplication = ({ params }: { params: { jobId: number } }) => {
 
     return (
         <div className="flex flex-col items-center w-full p-10">
-            <h1>You only need to your name and cv to applicate!</h1>
+            <h1 className="pb-5 font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 text-center">
+                You only need your name and CV to apply!
+            </h1>
 
             <div className="flex m-5 p-3 shrink-0 h-20 w-1/2 justify-center items-baseline bg-white rounded-lg shadow-lg">
-                <label>First Name</label>
+                <label className="mr-2 font-bold text-blue-500">First Name</label>
                 <input
                     value={applicant.firstName}
                     onChange={(e) => handleChange("firstName", e.target.value)}
                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 />
             </div>
+
             <div className="flex m-5 p-3 shrink-0 h-20 w-1/2 justify-center items-baseline bg-white rounded-lg shadow-lg">
-                <label>Last Name</label>
+                <label className="mr-2 font-bold text-blue-500">Last Name</label>
                 <input
                     value={applicant.lastName}
                     onChange={(e) => handleChange("lastName", e.target.value)}
@@ -66,7 +69,7 @@ const JobApplication = ({ params }: { params: { jobId: number } }) => {
             </div>
 
             <div className="flex m-5 p-3 shrink-0 h-20 w-1/2 justify-center items-baseline bg-white rounded-lg shadow-lg">
-                <label>Resume</label>
+                <label className="mr-2 font-bold text-blue-500">Resume</label>
                 <input
                     type="file"
                     onChange={handleFileChange}
@@ -74,9 +77,21 @@ const JobApplication = ({ params }: { params: { jobId: number } }) => {
                 />
             </div>
 
-            <button onClick={() => apply()}>Apply!</button>
+            <div>
+                <button
+                    onClick={() => apply()}
+                    className="mr-3 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-700 hover:to-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                    Apply!
+                </button>
 
-            <button onClick={() => router.back()}>Go back</button>
+                <button
+                    onClick={() => router.back()}
+                    className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-700 hover:to-pink-700 text-white font-bold py-2 px-4 rounded mt-5"
+                >
+                    Go back
+                </button>
+            </div>
         </div>
     );
 };

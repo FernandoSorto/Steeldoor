@@ -1,49 +1,47 @@
 import React from "react";
 import { JobCardProps } from "./types";
 
-const JobCard = ({ job, adminView, editJob, deleteJob, viewJob, applyforJob }: JobCardProps) => {
+const JobCard = ({ job, adminView, editJob, deleteJob, viewJob, applyForJob }: JobCardProps) => {
     return (
-        <div className="flex m-10 flex-col h-50 w-1/3 p-4 items-center bg-white border border-gray-200 rounded-md shadow-lg hover:bg-gray-100">
-            <h1 className="text-xl font-extrabold">{job.title}</h1>
-            <p>
-                <span className="text-violet-500 font-semibold">Description: </span>
-                {job.description}
-            </p>
-
-            <p>
-                <span className="text-violet-500 font-semibold">Location: </span>
-                {job.location}
-            </p>
-            <p>
-                <span className="text-violet-500 font-semibold">Salary Range: </span> $
-                {job.salaryBottom} - ${job.salaryRoof}
-            </p>
+        <div className="flex flex-col w-full p-4 mb-8 bg-white rounded-md shadow-lg hover:shadow-xl">
+            <h1 className="text-2xl font-extrabold mb-4">{job.title}</h1>
+            <p className="text-gray-700 mb-4">{job.description}</p>
+            <div className="flex items-center mb-4">
+                <span className="mr-2 text-violet-500 font-semibold">Location:</span>
+                <span className="text-gray-700">{job.location}</span>
+            </div>
+            <div className="flex items-center mb-4">
+                <span className="mr-2 text-violet-500 font-semibold">Salary Range:</span>
+                <span className="text-gray-700">
+                    ${job.salaryBottom} - ${job.salaryRoof}
+                </span>
+            </div>
             {adminView ? (
-                <div className=" flex p-5 w-full">
+                <div className="flex justify-end">
                     <button
                         onClick={viewJob}
-                        className="bg-green-500 mr-10 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                        className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-700 hover:to-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
                     >
                         View
                     </button>
                     <button
                         onClick={editJob}
-                        className="bg-blue-500 mr-10 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-2 px-4 rounded mr-2"
                     >
                         Edit
                     </button>
                     <button
                         onClick={deleteJob}
-                        className="bg-red-500 mr-10 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                        className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-700 hover:to-pink-700 text-white font-bold py-2 px-4 rounded"
                     >
                         Delete
                     </button>
                 </div>
             ) : (
-                <div className=" flex p-5 w-full">
+                <div className="flex justify-end">
                     <button
-                        onClick={applyforJob}
-                        className="bg-blue-500 mr-10 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        onClick={applyForJob}
+                        className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-2 px-4 rounded"
                     >
                         Apply
                     </button>

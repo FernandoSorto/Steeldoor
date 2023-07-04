@@ -50,36 +50,33 @@ const AdminDashboard = () => {
     };
 
     return (
-        <div className="flex flex-col h-full w-full items-center ">
-            <div className="mt-5 py-6 px-9 border-b-4  border-gray-300 rounded-lg">
-                <h1 className="text-6xl font-semibold text-sky-400">
-                    {" "}
+        <div className="flex flex-col h-full w-full items-center">
+            <div className="mt-5 py-6 px-9 border-b-4 border-gray-300 rounded">
+                <h1 className="font-extrabold pb-2 text-transparent text-5xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
                     Welcome {company?.name} admin!
                 </h1>
             </div>
 
-            <div className="mt-5">
-                <button className="bg-blue-500 mr-10 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <div className="mt-5 flex flex-wrap justify-center">
+                <button className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-2 px-4 rounded mr-2">
                     <Link href={"/"}>Go Back</Link>
                 </button>
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                <button className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-2 px-4 rounded">
                     <Link href={"admin-dashboard/create-job"}>Create new Job</Link>
                 </button>
             </div>
 
-            <div className="flex p-20 justify-center w-full  mx-10 my-0 flex-wrap  ">
-                {jobList.map((job) => {
-                    return (
-                        <JobCard
-                            job={job}
-                            adminView={true}
-                            editJob={() => goToEditJob(job.id)}
-                            deleteJob={() => deleteJobOpportunity(job.id)}
-                            viewJob={() => goToApplicationDetails(job.id)}
-                            key={job.id}
-                        />
-                    );
-                })}
+            <div className="flex p-6 md:p-10 lg:p-20 justify-center w-full mx-2 my-0 flex-wrap">
+                {jobList.map((job) => (
+                    <JobCard
+                        job={job}
+                        adminView={true}
+                        editJob={() => goToEditJob(job.id)}
+                        deleteJob={() => deleteJobOpportunity(job.id)}
+                        viewJob={() => goToApplicationDetails(job.id)}
+                        key={job.id}
+                    />
+                ))}
             </div>
         </div>
     );

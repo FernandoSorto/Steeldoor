@@ -94,52 +94,61 @@ const JobFilter = ({ setFilters, filters }: JobFilterProps) => {
     }, []);
 
     return (
-        <div className="flex mt-5">
-            <div className="mr-3">
-                <label>Company</label>
+        <div className="p-4 border rounded-lg shadow bg-white">
+            <div className="mb-3">
+                <label className="block text-lg font-bold text-gray-800">Company</label>
                 <Select
                     value={filters.selectedCompany}
                     onChange={(value) => setFilters("selectedCompany", value)}
                     options={preparedCompanies}
                     isClearable={true}
                     isSearchable={true}
+                    classNamePrefix="react-select"
                 />
-                <label>Locations</label>
+            </div>
+            <div className="mb-3">
+                <label className="block text-lg font-bold text-gray-800">Locations</label>
                 <Select
                     value={filters.selectedLocation}
                     onChange={(value) => setFilters("selectedLocation", value)}
                     options={preparedLocations}
                     isClearable={true}
                     isSearchable={true}
+                    classNamePrefix="react-select"
                 />
             </div>
-            <div className="mr-3">
-                <label>Salary bottom</label>
+            <div className="mb-3">
+                <label className="block text-lg font-bold text-gray-800">Salary bottom</label>
                 <Select
                     value={filters.selectedSalaryBottom}
                     onChange={(value) => setFilters("selectedSalaryBottom", value)}
                     options={preparedBottomSalary}
                     isClearable={true}
                     isSearchable={true}
+                    classNamePrefix="react-select"
                 />
-                <label>Salary ceiling</label>
+            </div>
+            <div className="mb-3">
+                <label className="block text-lg font-bold text-gray-800">Salary ceiling</label>
                 <Select
                     value={filters.selectedSalaryRoof}
                     onChange={(value) => setFilters("selectedSalaryRoof", value)}
                     options={preparedRoofSalary}
                     isClearable={true}
                     isSearchable={true}
+                    classNamePrefix="react-select"
                 />
             </div>
-            <div className="">
-                <label>Skills</label>
+            <div className="mb-3">
+                <label className="block text-lg font-bold text-gray-800">Skills</label>
                 <Select
-                    value={filters.selectedSkill}
+                    value={filters.selectedSkills}
                     onChange={(value) => setFilters("selectedSkills", value)}
                     options={preparedSkills}
                     isClearable={true}
                     isSearchable={true}
                     isMulti={true}
+                    classNamePrefix="react-select"
                 />
             </div>
         </div>
