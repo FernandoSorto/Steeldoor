@@ -28,8 +28,6 @@ const JobFeed = () => {
     });
 
     const updateFilter = (filterName: string, value: any) => {
-        // console.log(`BEING CALLED WITH: ${filterName} and`);
-        // console.log(JSON.stringify(value, null, 2));
         setFilters((prevFilters) => ({
             ...prevFilters,
             [filterName]: value,
@@ -50,11 +48,7 @@ const JobFeed = () => {
     useEffect(() => {
         const filtered = jobList.filter((job) => {
             // Filter based on selectedSkills
-
-            console.log(filters.selectedSkills);
-
             if (filters.selectedSkills.length > 0) {
-                console.log("hay al menos una seleccionada");
                 const hasMatchingSkills = filters.selectedSkills.some((selectedSkill) =>
                     job.SkillsOnJobs.some((skill) => skill.skillId === selectedSkill.value)
                 );

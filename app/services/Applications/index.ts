@@ -34,7 +34,6 @@ export const createApplicantionToJob = async (applicationIds: JobApplication, fi
         return data;
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            console.log(JSON.stringify(error, null, 2));
             return error.response?.data;
         } else {
             return "Unexpected error";

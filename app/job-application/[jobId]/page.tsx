@@ -31,8 +31,6 @@ const JobApplication = ({ params }: { params: { jobId: number } }) => {
         const createApplicantResponse = await createApplicant(applicant);
 
         if (createApplicantResponse.status === 200 && cvFile) {
-            console.log(createApplicantResponse.data.id);
-
             const application = {
                 jobId: Number(params.jobId),
                 applicantId: createApplicantResponse.data.id,
@@ -41,7 +39,6 @@ const JobApplication = ({ params }: { params: { jobId: number } }) => {
             const createApplicationResponse = await createApplicantionToJob(application, cvFile);
 
             if (createApplicationResponse.status === 200) {
-                console.log("Application sent!");
                 router.back();
             }
         }
