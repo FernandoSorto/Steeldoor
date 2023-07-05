@@ -12,6 +12,8 @@ const AdminDashboard = () => {
     const router = useRouter();
     const [company, setCompany] = useState<Company>();
     const [jobList, setJobList] = useState<Job[]>([]);
+    const [showModal, setShowModal] = useState(false);
+    const [deleteJobId, setDeleteJobId] = useState<number | null>(null);
 
     const fetchJobs = async () => {
         const response = await getAllJobs();
@@ -41,12 +43,21 @@ const AdminDashboard = () => {
         router.push(`admin-dashboard/view-applications/${jobId}`);
     };
 
-    const deleteJobOpportunity = async (jobId: number) => {
-        const response = await deleteJob(jobId);
+    const deleteJobOpportunity = (jobId: number) => {
+        setDeleteJobId(jobId);
+        setShowModal(true);
+    };
 
-        if (response.status === 200) {
-            fetchJobs();
+    const closeModal = async () => {
+        if (deleteJobId) {
+            const response = await deleteJob(deleteJobId);
+
+            if (response.status === 200) {
+                fetchJobs();
+            }
         }
+        setShowModal(false);
+        setDeleteJobId(null); // Reset the deleteJobId state variable
     };
 
     return (
@@ -78,6 +89,27 @@ const AdminDashboard = () => {
                     />
                 ))}
             </div>
+            {showModal && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-white p-8 rounded-lg shadow-lg justify">
+                        <h2 className="text-2xl font-bold mb-4">Are you sure?</h2>
+                        <button
+                            onClick={() => {
+                                setShowModal(false);
+                            }}
+                            className="mr-2 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-700 hover:to-blue-700 text-white font-bold py-2 px-4 rounded"
+                        >
+                            Close
+                        </button>
+                        <button
+                            onClick={closeModal}
+                            className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-700 hover:to-pink-700 text-white font-bold py-2 px-4 rounded"
+                        >
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

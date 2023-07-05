@@ -34,7 +34,7 @@ const AdminJobDetails = ({ params }: { params: { jobId: number } }) => {
     };
 
     return (
-        <div className="flex flex-col items-center p-10">
+        <div className="flex flex-col items-center p-10 min-h-[0]">
             <div className="flex flex-col mb-10 items-center">
                 <h1 className="font-extrabold mb-10 pb-2 text-transparent text-5xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
                     Job Opportunity Details & Applications
@@ -50,7 +50,7 @@ const AdminJobDetails = ({ params }: { params: { jobId: number } }) => {
             </div>
 
             <div className="flex justify-around w-full">
-                <div className="flex flex-col w-1/2 bg-white rounded-xl p-5">
+                <div className="flex flex-col w-1/2 h-1/2 bg-white rounded-xl p-5 ">
                     <h2 className="text-xl mb-5 border-b-2 border-gray-400 font-bold">
                         Job Profile
                     </h2>
@@ -102,16 +102,16 @@ const AdminJobDetails = ({ params }: { params: { jobId: number } }) => {
                             return (
                                 <div key={applicant.id} className="mb-4">
                                     <h3 className="font-bold text-blue-500 pb-2">Applicant</h3>
-                                    <div className="flex mb-2 bg-purple-100 rounded-lg p-3">
-                                        <div className="flex-grow">
-                                            <div className="flex flex-col items-center">
-                                                <label className="mr-2 text-gray-600 font-bold text-md">
+                                    <div className="flex justify-around mb-2 bg-purple-100 rounded-lg p-3">
+                                        <div className="flex flex-col">
+                                            <div className="flex flex-col text-right ">
+                                                <label className=" text-gray-600 font-bold text-md">
                                                     First Name
                                                 </label>
                                                 <p>{applicant.applicant.firstName}</p>
                                             </div>
-                                            <div className="flex flex-col items-center">
-                                                <label className="mr-2 text-gray-600 font-bold text-md">
+                                            <div className="flex flex-col text-right">
+                                                <label className=" text-gray-600 font-bold text-md">
                                                     Last Name
                                                 </label>
                                                 <p>{applicant.applicant.lastName}</p>
